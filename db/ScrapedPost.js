@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var ScrapedPost = new Schema({
+var ScrapedPostSchema = new Schema({
     Title: {
         type: String,
         trim: true,
@@ -23,6 +23,11 @@ var ScrapedPost = new Schema({
         type: String,
         trim: true,
         required: "String is required"
+    },
+    DateScraped: {
+        type: Date,
+        default: Date.now
     }
 });
+const ScrapedPost = mongoose.model("ScrapedPost", ScrapedPostSchema );
 module.exports = ScrapedPost;

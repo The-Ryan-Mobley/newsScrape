@@ -2,7 +2,7 @@ const express = require("express");
 const handlebar = require("express-handlebars");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 1337;
 
 app.use(express.json());
 app.use(express.static("public"));
