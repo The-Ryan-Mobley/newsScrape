@@ -19,11 +19,6 @@ var ScrapedPostSchema = new Schema({
         trim: true,
         required: "need url"
     },
-    Subreddit: {
-        type: String,
-        trim: true,
-        required: "String is required"
-    },
     DateScraped: {
         type: Date,
         default: Date.now

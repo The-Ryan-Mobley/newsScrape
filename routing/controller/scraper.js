@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const axios = require("axios");
 const cheerio = require("cheerio");
-//var db = require("../../db");
+const db = require("../../db");
 module.exports = {
-    scrape: (callback) => {
-        axios.get("https://old.reddit.com/r/todayilearned").then( response => {
+    scrape: (url,callback) => {
+        axios.get(url).then(response => {
 
             let $ = cheerio.load(response.data);
             let results = [];
@@ -13,22 +13,31 @@ module.exports = {
                 let title = $(element).children().find(".may-blank").text();
                 let thumbnail = $(element).children("a.thumbnail").attr("href").toString();
                 let author = $(element).children().find(".author").text();
-            
                 let link = $(element).children().find(".may-blank").attr("href");
-                
-                results.push({
-                  title,
-                  author,
-                  thumbnail,
-                  link,
-                  
-                });
+
+                let item = {
+                    title,
+                    link,
+                    thumbnail,
+                    author,
+                }
+                // results.push({
+                //     title,
+                //     link,
+                //     thumbnail,
+                //     author,
+                    
+                // });
+                this.pushToDb(item)
             });
-            callback(results);
+            callback("200");
         });
 
     },
-    pushToDb: (dataArray) => {
+    pushToDb: (data) => {
+        db.ScrapedPost.create(data, (er, result) =>{
+
+        });
         console.log(dataArray);
 
 
