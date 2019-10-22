@@ -10,6 +10,8 @@ app.use(express.static("public"));
 app.engine("handlebars", handlebar({ defaultLayout: "main" })); //set up handlebars
 app.set("view engine", "handlebars");
 
+require("./routing/htmlRoutes")(app);
+
 app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",

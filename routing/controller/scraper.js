@@ -11,9 +11,10 @@ module.exports = {
             $("p.title").each((i, element) => {
 
                 let title = $(element).text();
+                let thumbnail = $(elementt)
+                let author = $(element)
             
                 let link = $(element).children().attr("href");
-            
                 
                 results.push({
                   title: title,
@@ -23,7 +24,8 @@ module.exports = {
         });
 
     },
-    pushToDb = () => {
+    pushToDb = (dataArray) => {
+
 
     }
 }
