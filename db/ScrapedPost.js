@@ -24,5 +24,5 @@ var ScrapedPostSchema = new Schema({
         default: Date.now
     }
 });
-const ScrapedPost = mongoose.model("ScrapedPost", ScrapedPostSchema );
+let ScrapedPost = mongoose.model("ScrapedPost", ScrapedPostSchema );
 module.exports = ScrapedPost;
