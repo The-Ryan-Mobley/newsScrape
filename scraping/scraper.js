@@ -35,6 +35,12 @@ module.exports = {
             });
             callback("200");
         });
-
     },
+    query: (callback) => {
+        db.ScrapedPost.find({}).then( result => {
+            console.log(result);
+            callback(result);
+        })
+
+    }
 }

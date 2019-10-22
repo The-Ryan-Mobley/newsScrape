@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var ScrapedPostSchema = new Schema({
+let ScrapedPostSchema = new Schema({
     Title: {
         type: String,
         trim: true,
@@ -19,10 +19,19 @@ var ScrapedPostSchema = new Schema({
         trim: true,
         required: "need url"
     },
+    author :{
+        type: String,
+        trim: true,
+        required: "need valid author"
+    },
     DateScraped: {
         type: Date,
         default: Date.now
-    }
+    },
+    comments: {
+        type: Schema.Types.ObjectId,
+        ref: "Comments"
+      }
 });
 let ScrapedPost = mongoose.model("ScrapedPost", ScrapedPostSchema );
 module.exports = ScrapedPost;
