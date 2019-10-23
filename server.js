@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 1337;
 
 //mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 

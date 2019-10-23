@@ -1,45 +1,70 @@
 $(window).on("load", () => {
-    const modal = $(".modal");
+    const modal = $(".post-comm");
+    const modals = $(".modal");
+    const commThread = $(".view-comm");
+    const commView = $(".read-comments");
     const btn = $(".comment-btn");
-    const close = $(".modal-close")
+    const close = $(".modal-close");
+    const submiter = $(".post-button");
     modal.hide();
+    commThread.hide();
 
-    btn.on('click', (event) => {
+    btn.on('click', function () {
+        modal.data("id", $(this).data("id"));
         modal.show();
-
-
     });
+    commView.on('click', function () {
+        let _id = $(this).data("id");
+        commThread.show();
+        $.ajax({
+            type: "GET",
+            url: "/comment/"+_id
+        }).then((result) => {
+                    console.table(result);
+                    result.forEach(i => {
+                        let commentString =
+                            `<div class='comment'>
+                                <p><strong>${i.username}</strong><br></p>
+                                <p class='bod'>${i.body}</p>
+                            </div>`;
+                        $(commentString).appendTo(".comment-zone");
+                    });
+
+            });
+
+    }); 
+    $(".view-close").on('click', () => {
+        commThread.hide();
+        $(".comment-zone").empty();
+    });
+    
     close.on('click', (event) => {
-        modal.hide();
-
+    modal.hide();
     });
-    // Get the modal
-    //$(".para").eq(2).css("color","red");
-    
-
-    // Get the button that opens the modal
-    
-
-    // Get the <span> element that closes the modal
-    var span = $(".close").eq(0);
-
-    // When the user clicks on the button, open the modal
-    btn.on("click", (event)=>{
-        modal.style.display = "block";
-    });
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    submiter.on('click', (event) => {
+        event.preventDefault();
+        //also need post id
+        let _id = modal.data("id");
+        console.log(_id);
+        let comment = {
+            username: $("#name").val(),
+            body: $("#user-comment-form").val()
         }
-    }
-
-
+        console.table(comment);
+        $.ajax({
+            type: "POST",
+            url: "/comment/"+_id,
+            data: comment
+        }).then(() => {
+            modal.hide();
+        })
+    
+    });
 
 });
+
+function scrape() {
+    $.get("/scrape", () => {
+        console.log('scraped for new data');
+    })
+}

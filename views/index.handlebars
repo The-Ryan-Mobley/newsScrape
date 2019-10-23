@@ -1,21 +1,39 @@
 <h1>Hello world!</h1>
 {{#each entry}}
-<div class="twelve columns post">
+<div class="twelve columns post shadowed">
     <div class="two columns image-container">
         <p class="karma">{{karma}}</p>
-        <img src={{thumbnail}} alt="reddit-icon" class="thumbnail">
+        <img src={{thumbnail}} alt="reddit-icon" class="thumbnail shadowed">
     </div>
     <div class="ten columns text-container">
         <a class='headline' href={{link}}><strong>{{Title}}</strong></a>
         <p class="author">Submitted by: {{author}}</p>
         <a class="to-comments" href={{discussion}}>View Thread</a>
-        <a class="button comment-btn" href="#commenter" data-id={{_id}}>Leave a Comment</a>
+        <a class="button comment-btn shadowed-btn" href="#commenter" data-id={{_id}}>Leave a Comment</a>
+        <a class="read-comments" href="#view-modal" data-id={{_id}}>Comments</a>
     </div>
 </div>
 {{/each}}
-<div id="#commenter" class="modal" data-id="">
+<div id="#commenter" class="modal post-comm" data-id="">
     <div class="modal-content">
-    <a class="button modal-close">&times;</a>
-    <p>Some text in the Modal..</p>
-  </div>
+        <a class="button modal-close shadowed-btn">&times;</a>
+        <form action="#">
+            <div class="input-field">
+                <label for="name">Username</label>
+                <input type="text" id="name">
+            </div>
+            <br>
+            <div class="input-field">
+                <label for="user-comment-form">Comment</label>
+                <textarea name="user-comment-form" id="user-comment-form" rows="30" cols="60"></textarea>
+            </div>
+            <input value="Post" class="button modal-post post-button shadowed-btn">
+        </form>
+    </div>
+</div>
+<div class="modal view-comm" id="#view-modal" data-id="">
+    <div class="modal-content">
+        <a class="button view-close shadowed-btn">&times;</a>
+        <div class="twelve columns commentZone"></div>
+    </div>
 </div>
