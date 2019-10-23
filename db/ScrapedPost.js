@@ -14,15 +14,25 @@ let ScrapedPostSchema = new Schema({
         unique: true,
         required: "String is required"
     },
-    thumbnail :{
+    karma :{
         type: String,
         trim: true,
-        required: "need url"
+        required: "String is required"
     },
     author :{
         type: String,
         trim: true,
         required: "need valid author"
+    },
+    thumbnail :{
+        type: String,
+        trim: true,
+        required: "need a valid url"
+    },
+    discussion :{
+        type: String,
+        trim: true,
+        required: "need a valid url"
     },
     DateScraped: {
         type: Date,

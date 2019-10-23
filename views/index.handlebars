@@ -1,13 +1,21 @@
 <h1>Hello world!</h1>
 {{#each entry}}
-<div class="twelve columns">
-    <div class="two columns">
+<div class="twelve columns post">
+    <div class="two columns image-container">
+        <p class="karma">{{karma}}</p>
         <img src={{thumbnail}} alt="reddit-icon" class="thumbnail">
     </div>
-    <div class="ten columns">
-        <p class='headline'>{{Title}}</h1>
+    <div class="ten columns text-container">
+        <a class='headline' href={{link}}><strong>{{Title}}</strong></a>
         <p class="author">Submitted by: {{author}}</p>
-        <a href={{link}}>Link</a>
+        <a class="to-comments" href={{discussion}}>View Thread</a>
+        <a class="button comment-btn" href="#commenter" data-id={{_id}}>Leave a Comment</a>
     </div>
 </div>
 {{/each}}
+<div id="#commenter" class="modal" data-id="">
+    <div class="modal-content">
+    <a class="button modal-close">&times;</a>
+    <p>Some text in the Modal..</p>
+  </div>
+</div>
