@@ -24,23 +24,10 @@ module.exports = {
                     discussion
                 };
                 
-                db.ScrapedPost.count({},(er,count) =>{
-                    if(count > 60){
-                        db.ScrapedPost.remove({}).exec(()=>{
-                            db.ScrapedPost.create(item).then(result =>{
-                            }).catch((err)=>{
-                                //console.log(err);
-                            });
-                        });
-                    } else{
-                        db.ScrapedPost.create(item).then(result =>{
-                                    
-                        }).catch((err)=>{
-                            //console.log(err);
-                        });
-                    }
-                });
-                
+                db.ScrapedPost.create(item).then(result =>{
+                }).catch((err)=>{
+                    //console.log(err);
+                });   
 
             });
             callback("200");
@@ -64,5 +51,24 @@ module.exports = {
         db.ScrapedPost.findOne({_id: id}).populate("comments").then((result)=>{
             callback(result);
         });
+    },
+    curateDb: (callback) => {
+        db.ScrapedPost.countDocuments({},(er,count) =>{
+            if(er){
+                console.log(er);
+            }
+            if(count > 25){
+                db.ScrapedPost.deleteMany({}).exec(()=>{
+                    callback("200");
+                    
+                });
+            } else{
+                callback("200");
+            }
+        }).catch(()=>{
+            callback("504");
+        });
+
     }
+
 }

@@ -1,6 +1,5 @@
 $(window).on("load", () => {
     const modal = $(".post-comm");
-    const modals = $(".modal");
     const commThread = $(".view-comm");
     const commView = $(".read-comments");
     const btn = $(".comment-btn");
@@ -44,20 +43,18 @@ $(window).on("load", () => {
         modal.hide();
     });
     submiter.on('click', (event) => {
-        event.preventDefault();
-        //also need post id
         let _id = modal.data("id");
-        console.log(_id);
         let comment = {
             username: $("#name").val(),
             body: $("#user-comment-form").val()
         }
-        console.table(comment);
         $.ajax({
             type: "POST",
             url: "/comment/" + _id,
             data: comment
-        }).then(() => {
+        }).then((result) => {
+            $("#user-comment-form").val("")
+            $("#name").val("");
             modal.hide();
         })
 

@@ -10,7 +10,7 @@ let CommentsSchema = new Schema({
     body :{
         type: String,
         required: "you gotta type something here"
-    }
+    },
 });
 let Comments = mongoose.model("Comments", CommentsSchema );
 module.exports = Comments;

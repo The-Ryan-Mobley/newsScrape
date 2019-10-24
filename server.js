@@ -16,7 +16,7 @@ app.engine("handlebars", handlebar({ defaultLayout: "main" })); //set up handleb
 app.set("view engine", "handlebars");
 
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, { useFindAndModify: false });
 
 require("./routing/apiRoutes")(app);
 require("./routing/htmlRoutes")(app);
