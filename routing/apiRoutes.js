@@ -30,7 +30,7 @@ module.exports = (app) => {
     });
     app.get("/comment/:id",(req,res)=>{
         let id = req.params.id;
-        console.log(id);
+        
         scraper.viewComments(id, (result)=>{
             if(result !== "404"){
                 res.json(result);

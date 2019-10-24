@@ -19,16 +19,18 @@ $(window).on("load", () => {
             type: "GET",
             url: "/comment/" + _id
         }).then((result) => {
-            console.table(result.comments);
             commThread.show();
 
-            let commentString =
-                `<div class='comment shadowed'>
-                                <p><strong>${result.comments.username}</strong><br></p>
-                                <p class='bod'>${result.comments.body}</p>
+            result.forEach(i => {
+                let commentString =
+                    `<div class='comment shadowed'>
+                                <p><strong>${i.username}</strong><br></p>
+                                <p class='bod'>${i.body}</p>
                             </div>`;
-            $(commentString).appendTo(".comment-zone");
+                $(commentString).appendTo(".comment-zone");
 
+
+            });
 
 
         });
@@ -46,7 +48,8 @@ $(window).on("load", () => {
         let _id = modal.data("id");
         let comment = {
             username: $("#name").val(),
-            body: $("#user-comment-form").val()
+            body: $("#user-comment-form").val(),
+            postId: _id
         }
         $.ajax({
             type: "POST",

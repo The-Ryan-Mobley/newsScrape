@@ -11,6 +11,12 @@ let CommentsSchema = new Schema({
         type: String,
         required: "you gotta type something here"
     },
+    postId :{
+        type: String,
+        trim: true,
+        required: "need associated Post"
+    }
+
 });
 let Comments = mongoose.model("Comments", CommentsSchema );
 module.exports = Comments;

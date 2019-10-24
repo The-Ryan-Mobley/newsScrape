@@ -40,15 +40,12 @@ module.exports = {
     },
     insertComment: (data,id, callback) => {
         db.Comments.create(data).then((result)=>{
-            return db.ScrapedPost.findOneAndUpdate({ _id: id }, { comments: result._id }, { new: true })
-
-        }).then(()=>{
-               callback("200");  
+             callback("200");
         }).catch(()=>{console.log('failed to create comment'); callback("404");});
 
     },
     viewComments: (id, callback) => {
-        db.ScrapedPost.findOne({_id: id}).populate("comments").then((result)=>{
+        db.Comments.find({postId: id}).then((result)=>{
             callback(result);
         });
     },

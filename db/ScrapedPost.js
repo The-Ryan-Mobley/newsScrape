@@ -37,11 +37,7 @@ let ScrapedPostSchema = new Schema({
     DateScraped: {
         type: Date,
         default: Date.now
-    },
-    comments: {
-        type: Schema.Types.ObjectId,
-        ref: "Comments"
-      }
+    }
 });
 let ScrapedPost = mongoose.model("ScrapedPost", ScrapedPostSchema );
 module.exports = ScrapedPost;
