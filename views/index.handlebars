@@ -1,16 +1,18 @@
-<h1>Hello world!</h1>
 {{#each entry}}
-<div class="twelve columns post shadowed">
+<div class="twelve columns post shadowed slider">
     <div class="two columns image-container">
-        <p class="karma">{{karma}}</p>
         <img src={{thumbnail}} alt="reddit-icon" class="thumbnail shadowed">
+        <p class="karma">{{karma}}</p>
+        
     </div>
     <div class="ten columns text-container">
         <a class='headline' href={{link}}><strong>{{Title}}</strong></a>
         <p class="author">Submitted by: {{author}}</p>
-        <a class="to-comments" href={{discussion}}>View Thread</a>
-        <a class="button comment-btn shadowed-btn" href="#commenter" data-id={{_id}}>Leave a Comment</a>
-        <a class="read-comments" href="#view-modal" data-id={{_id}}>Comments</a>
+        <div class="button-group">
+            <a class="button to-comments shadowed-btn" href={{discussion}}>View Thread</a>
+            <a class="button comment-btn shadowed-btn" href="#commenter" data-id={{_id}}>Leave a Comment</a>
+            <a class="button read-comments shadowed-btn" href="#view-modal" data-id={{_id}}>Comments</a>
+        </div>
     </div>
 </div>
 {{/each}}
@@ -19,7 +21,7 @@
         <a class="button modal-close shadowed-btn">&times;</a>
         <form action="#">
             <div class="input-field">
-                <label for="name">Username</label>
+                <label for="name">Your Name</label>
                 <input type="text" id="name">
             </div>
             <br>
@@ -32,8 +34,11 @@
     </div>
 </div>
 <div class="modal view-comm" id="#view-modal" data-id="">
-    <div class="modal-content">
+    <div class="modal-content comment-div">
         <a class="button view-close shadowed-btn">&times;</a>
-        <div class="twelve columns commentZone"></div>
+        <div class="comment-zone">
+            
+        </div>
+
     </div>
 </div>

@@ -15,31 +15,33 @@ $(window).on("load", () => {
     });
     commView.on('click', function () {
         let _id = $(this).data("id");
-        commThread.show();
+
         $.ajax({
             type: "GET",
-            url: "/comment/"+_id
+            url: "/comment/" + _id
         }).then((result) => {
-                    console.table(result);
-                    result.forEach(i => {
-                        let commentString =
-                            `<div class='comment'>
-                                <p><strong>${i.username}</strong><br></p>
-                                <p class='bod'>${i.body}</p>
+            console.table(result.comments);
+            commThread.show();
+
+            let commentString =
+                `<div class='comment shadowed'>
+                                <p><strong>${result.comments.username}</strong><br></p>
+                                <p class='bod'>${result.comments.body}</p>
                             </div>`;
-                        $(commentString).appendTo(".comment-zone");
-                    });
+            $(commentString).appendTo(".comment-zone");
 
-            });
 
-    }); 
+
+        });
+
+    });
     $(".view-close").on('click', () => {
         commThread.hide();
         $(".comment-zone").empty();
     });
-    
+
     close.on('click', (event) => {
-    modal.hide();
+        modal.hide();
     });
     submiter.on('click', (event) => {
         event.preventDefault();
@@ -53,12 +55,12 @@ $(window).on("load", () => {
         console.table(comment);
         $.ajax({
             type: "POST",
-            url: "/comment/"+_id,
+            url: "/comment/" + _id,
             data: comment
         }).then(() => {
             modal.hide();
         })
-    
+
     });
 
 });
