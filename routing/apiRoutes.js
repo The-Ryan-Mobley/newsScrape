@@ -16,7 +16,6 @@ module.exports = (app) => {
     });
     app.post("/comment/:id", (req,res) => {
         let id = req.params.id;
-        console.log(req.body);
         scraper.insertComment(req.body, id, (result)=>{
             if(result !== "404"){
                 res.sendStatus("200");

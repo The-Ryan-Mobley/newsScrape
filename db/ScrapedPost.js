@@ -26,8 +26,7 @@ let ScrapedPostSchema = new Schema({
     },
     thumbnail :{
         type: String,
-        trim: true,
-        required: "need a valid url"
+        trim: true
     },
     discussion :{
         type: String,

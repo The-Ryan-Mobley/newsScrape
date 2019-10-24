@@ -4,27 +4,21 @@ module.exports = (app) => {
         scraper.curateDb((curator) => {
             if (curator !== "504") {
                 scraper.scrape("https://old.reddit.com/r/todayilearned", result => {
-                    if (result === "200") {
-                        scraper.query(result => {
-                            res.render('index', {
-                                entry: result
-                            });
+                    scraper.query(result => {
+                        console.table(result);
+                        res.render('index', {
+                            
+                            entry: result
                         });
-                    } else {
-                        res.render('index');
-                    }
+                    });
                 });
-            } else{
+            } else {
                 scraper.scrape("https://old.reddit.com/r/todayilearned", result => {
-                    if (result === "200") {
-                        scraper.query(result => {
-                            res.render('index', {
-                                entry: result
-                            });
+                    scraper.query(result => {
+                        res.render('index', {
+                            entry: result
                         });
-                    } else {
-                        res.render('index');
-                    }
+                    });
                 });
             }
 

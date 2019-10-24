@@ -8,7 +8,7 @@ module.exports = {
             let $ = cheerio.load(response.data);
             $("div.thing").each((i, element) => {
 
-                let Title = $(element).children().find(".title").text().toString();
+                let Title = $(element).children().find("a.title").text().toString();
                 let karma = $(element).children("div.unvoted").find(".unvoted").text();
                 let author = $(element).children().find(".author").text().toString();
                 let link = $(element).children().find(".may-blank").attr("href").toString();
@@ -26,19 +26,19 @@ module.exports = {
                 
                 db.ScrapedPost.create(item).then(result =>{
                 }).catch((err)=>{
-                    //console.log(err);
+                    console.log(err);
                 });   
 
             });
             callback("200");
         });
     },
-    query: callback => {
+    query: (callback) => {
         db.ScrapedPost.find({}).then( result => {
             callback(result);
         });
     },
-    insertComment: (data,id, callback) => {
+    insertComment: (data, callback) => {
         db.Comments.create(data).then((result)=>{
              callback("200");
         }).catch(()=>{console.log('failed to create comment'); callback("404");});
@@ -46,24 +46,35 @@ module.exports = {
     },
     viewComments: (id, callback) => {
         db.Comments.find({postId: id}).then((result)=>{
+            console.log("line 49 quering");
             callback(result);
         });
     },
     curateDb: (callback) => {
         db.ScrapedPost.countDocuments({},(er,count) =>{
             if(er){
+                console.log("line 55");
                 console.log(er);
+                callback("200");
             }
-            if(count > 25){
-                db.ScrapedPost.deleteMany({}).exec(()=>{
+            if(count){
+                if(count > 25){
+                    db.ScrapedPost.deleteMany({}).exec(()=>{
+                        console.log("*************************line 63");
+                        callback("200");
+                        
+                    });
+                } else{
+                    console.log("*************************line 68");
                     callback("200");
-                    
-                });
+                }
             } else{
+                console.log("*************************line 72");
                 callback("200");
             }
         }).catch(()=>{
-            callback("504");
+            console.log("*************************line 76");
+            callback("200");
         });
 
     }
