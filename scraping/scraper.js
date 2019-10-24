@@ -8,7 +8,7 @@ module.exports = {
             let $ = cheerio.load(response.data);
             $("div.thing").each((i, element) => {
 
-                let Title = $(element).children().find(".may-blank").text().toString();
+                let Title = $(element).children().find(".title").text().toString();
                 let karma = $(element).children("div.unvoted").find(".unvoted").text();
                 let author = $(element).children().find(".author").text().toString();
                 let link = $(element).children().find(".may-blank").attr("href").toString();
