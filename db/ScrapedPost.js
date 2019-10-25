@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let ScrapedPostSchema = new Schema({
+
     Title: {
         type: String,
         trim: true,
@@ -35,7 +36,8 @@ let ScrapedPostSchema = new Schema({
     },
     DateScraped: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        expires: 120
     }
 });
 let ScrapedPost = mongoose.model("ScrapedPost", ScrapedPostSchema );

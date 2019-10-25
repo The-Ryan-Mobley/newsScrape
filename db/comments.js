@@ -15,6 +15,11 @@ let CommentsSchema = new Schema({
         type: String,
         trim: true,
         required: "need associated Post"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        expires: 14400
     }
 
 });
