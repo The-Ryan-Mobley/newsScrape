@@ -15,8 +15,8 @@ module.exports = {
                 let link = $(element).children().find(".may-blank").attr("href").toString();
                 let thumbnail = $(element).find("img").attr("src")
                 let discussion = $(element).find(".comments").attr("href");
-                if (thumbnail === `alt="reddit-icon"`) {
-                    thumbnail = `./assets/images/notfound.png`;
+                if (!thumbnail) {
+                    thumbnail = `/assets/images/notfound.png`;
                 }
 
                 let item = {
@@ -27,19 +27,23 @@ module.exports = {
                     thumbnail,
                     discussion
                 };
-                let result = await db.ScrapedPost.create(item);
-                if (result) {
-                    if (counter === ($("div.thing").length - 1)) { //iterates over elements and performs callback when needed
+                try {
+                    let result = await db.ScrapedPost.create(item);
+                    if (result) {
+                        if (counter === ($("div.thing").length - 1)) { //iterates over elements and performs callback when needed
+                            callback("200");
+                        } else {
+                            counter++;
+                        }
+
+                    } 
+                } catch {
+                    if (counter === ($("div.thing").length - 1)) {
                         callback("200");
                     } else {
                         counter++;
                     }
-
-                } else {
-                    console.log("error")
-                    return;
                 }
-
 
 
             });
@@ -54,13 +58,16 @@ module.exports = {
             callback("404");
         }
     },
-    insertComment: (data, callback) => {
-        db.Comments.create(data).then((result) => {
-            callback("200");
-        }).catch(() => {
+    insertComment: async (data, callback) => {
+        try{
+            let result = await db.Comments.create(data)
+            if(result){
+                callback("200");
+            }
+        } catch {
             console.log('failed to create comment');
             callback("404");
-        });
+        };
 
     },
     viewComments: (id, callback) => {

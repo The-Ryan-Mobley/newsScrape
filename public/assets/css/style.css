@@ -74,9 +74,13 @@ footer {
     max-width: 100%;;
 }
 #name{
-    max-width: 100%;;
+    max-width: 100%;
 }
+.thumbnail{
+    max-width: 100%;
+    max-height: auto;
 
+}
 /************************modal*****************************/
 .modal {
     position: fixed;

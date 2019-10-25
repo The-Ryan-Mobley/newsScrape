@@ -59,7 +59,7 @@ $(window).on("load", () => {
             $("#user-comment-form").val("")
             $("#name").val("");
             modal.hide();
-        })
+        });
 
     });
 

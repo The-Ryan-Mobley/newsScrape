@@ -37,7 +37,7 @@ let ScrapedPostSchema = new Schema({
     DateScraped: {
         type: Date,
         default: Date.now,
-        expires: 120
+        expires: 14400
     }
 });
 let ScrapedPost = mongoose.model("ScrapedPost", ScrapedPostSchema );
