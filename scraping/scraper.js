@@ -78,7 +78,7 @@ module.exports = {
             callback(result);
         });
     },
-    curateDb: (callback) => {
+    curateDb: (callback) => { //not needed anymore but good to have if i need to update new info to collection
         db.ScrapedPost.countDocuments({}, (er, count) => {
             if (er) {
                 console.log("line 55");
