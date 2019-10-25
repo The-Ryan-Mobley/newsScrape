@@ -101,7 +101,12 @@ footer {
     /* Black w/ opacity */
     padding: 1%;
 }
-
+.post-comm{
+    display: none;
+}
+.view-comm{
+    display: none;
+}
 /* Modal Content/Box */
 .modal-content {
     align-content: center;

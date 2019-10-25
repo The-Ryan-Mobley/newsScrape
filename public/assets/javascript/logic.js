@@ -5,8 +5,7 @@ $(window).on("load", () => {
     const btn = $(".comment-btn");
     const close = $(".modal-close");
     const submiter = $(".post-button");
-    modal.hide();
-    commThread.hide();
+    
 
     btn.on('click', function () {
         modal.data("id", $(this).data("id"));
