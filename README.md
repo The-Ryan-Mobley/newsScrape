@@ -1,6 +1,7 @@
 # newsScrape
 
 https://fast-taiga-02345.herokuapp.com/
+![page](https://drive.google.com/uc?export=view&id=16r5OfCRNnFa8EN-c_UyccLEO7bPbaX6z)
 ## About
 stuck in an awkward elevator ride and need some slightly interesting facts to make small talk? This website is just for you! this site 
 scrapes to trending section of reddit's 'todayilearned' or TIL subreddit. Avoid all the wierd ads disguised as post, and the pop ups
